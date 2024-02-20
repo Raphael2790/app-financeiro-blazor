@@ -1,0 +1,85 @@
+﻿@page "/new-account"
+
+@inject IAccountService AccountService
+
+<h3>Nova Conta</h3>
+
+@if (_result != null)
+{
+    @if (_result.Success)
+    {
+        <div class="alert alert-success" role="alert">
+            Conta criada com sucesso!
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-danger" role="alert">
+            Falha ao criar conta: @_result.Message
+        </div>
+    }
+}
+
+<EditForm Model="@_model" OnValidSubmit="OnValidSubmitAsync">
+    <DataAnnotationsValidator />
+
+    <div class="mb">
+        <InputText class="form-input" @bind-Value = "_model!.Name" placeholder = "Nome" ></InputText>
+        <span class="form-input-invalid">
+            <ValidationMessage For = "@(() => _model.Name)"/>
+        </span>
+    </div>
+
+    <div class="mb">
+        <InputText class="form-input" @bind-Value="_model!.Surname" placeholder="Sobrenome"></InputText>
+        <span class="form-input-invalid">
+            <ValidationMessage For="@(() => _model.Surname)" />
+        </span>
+    </div>
+
+    <div class="mb">
+        <InputText class="form-input" @bind-Value="_model!.Phone" placeholder="Telefone"></InputText>
+        <span class="form-input-invalid">
+            <ValidationMessage For="@(() => _model.Phone)" />
+        </span>
+    </div>
+
+    <div class="mb">
+        <InputText class="form-input" @bind-Value="_model!.Email" placeholder="E-mail"></InputText>
+        <span class="form-input-invalid">
+            <ValidationMessage For="@(() => _model.Email)" />
+        </span>
+    </div>
+
+    <div class="mb">
+        <InputText class="form-input" @bind-Value="_model!.Document" placeholder="Documento"></InputText>
+        <span class="form-input-invalid">
+            <ValidationMessage For="@(() => _model.Document)" />
+        </span>
+    </div>
+
+    <div class="mb">
+        <InputText class="form-input" @bind-Value="_model!.MotherName" placeholder="Nome da mãe"></InputText>
+        <span class="form-input-invalid">
+            <ValidationMessage For="@(() => _model.MotherName)" />
+        </span>
+    </div>
+
+    <div class="mb">
+        <button type="submit" class="btn btn-filled btn-auto mb">
+            Criar conta
+        </button>
+    </div>
+
+</EditForm>
+
+@code {
+    private Account _model = new();
+    private AccountResult? _result;
+
+    public async Task OnValidSubmitAsync()
+    {
+        _result = await AccountService.CreateAccount(_model);
+
+    }
+}
