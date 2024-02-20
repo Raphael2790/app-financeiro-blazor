@@ -4,7 +4,7 @@ namespace AgioBank.Services
 {
     public class ServicoContaMock : IServicoConta
     {
-        public async Task<ResultadoConta> CreateAccount(Conta account)
+        public async Task<ResultadoConta> Criar(Conta conta)
         {
             await Task.Delay(1000);
             return new ResultadoConta {Success = true, Message = "Conta criada com sucesso" };

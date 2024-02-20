@@ -14,7 +14,7 @@ namespace AgioBank.Services
         
         }
         
-        public async Task<ResultadoConta> CreateAccount(Conta account)
+        public async Task<ResultadoConta> Criar (Conta conta)
         {
             throw new NotImplementedException();
         }

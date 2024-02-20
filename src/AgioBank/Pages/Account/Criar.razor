@@ -1,6 +1,6 @@
 ﻿@page "/new-account"
 
-@inject IAccountService AccountService
+@inject IServicoConta ServicoConta
 
 <h3>Nova Conta</h3>
 
@@ -24,23 +24,23 @@
     <DataAnnotationsValidator />
 
     <div class="mb">
-        <InputText class="form-input" @bind-Value = "_model!.Name" placeholder = "Nome" ></InputText>
+        <InputText class="form-input" @bind-Value = "_model!.Nome" placeholder = "Nome" ></InputText>
         <span class="form-input-invalid">
-            <ValidationMessage For = "@(() => _model.Name)"/>
+            <ValidationMessage For = "@(() => _model.Nome)"/>
         </span>
     </div>
 
     <div class="mb">
-        <InputText class="form-input" @bind-Value="_model!.Surname" placeholder="Sobrenome"></InputText>
+        <InputText class="form-input" @bind-Value="_model!.Sobrenome" placeholder="Sobrenome"></InputText>
         <span class="form-input-invalid">
-            <ValidationMessage For="@(() => _model.Surname)" />
+            <ValidationMessage For="@(() => _model.Sobrenome)" />
         </span>
     </div>
 
     <div class="mb">
-        <InputText class="form-input" @bind-Value="_model!.Phone" placeholder="Telefone"></InputText>
+        <InputText class="form-input" @bind-Value="_model!.Telefone" placeholder="Telefone"></InputText>
         <span class="form-input-invalid">
-            <ValidationMessage For="@(() => _model.Phone)" />
+            <ValidationMessage For="@(() => _model.Telefone)" />
         </span>
     </div>
 
@@ -52,16 +52,16 @@
     </div>
 
     <div class="mb">
-        <InputText class="form-input" @bind-Value="_model!.Document" placeholder="Documento"></InputText>
+        <InputText class="form-input" @bind-Value="_model!.Documento" placeholder="Documento"></InputText>
         <span class="form-input-invalid">
-            <ValidationMessage For="@(() => _model.Document)" />
+            <ValidationMessage For="@(() => _model.Documento)" />
         </span>
     </div>
 
     <div class="mb">
-        <InputText class="form-input" @bind-Value="_model!.MotherName" placeholder="Nome da mãe"></InputText>
+        <InputText class="form-input" @bind-Value="_model!.NomeMae" placeholder="Nome da mãe"></InputText>
         <span class="form-input-invalid">
-            <ValidationMessage For="@(() => _model.MotherName)" />
+            <ValidationMessage For="@(() => _model.NomeMae)" />
         </span>
     </div>
 
@@ -79,7 +79,7 @@
 
     public async Task OnValidSubmitAsync()
     {
-        _result = await AccountService.CreateAccount(_model);
+        _result = await ServicoConta.Criar(_model);
 
     }
 }

@@ -8,6 +8,6 @@ namespace AgioBank.Services
 {
     public interface IServicoConta
     {
-        Task <ResultadoConta> CreateAccount(Conta account);
+        Task <ResultadoConta> Criar(Conta conta);
     }
 }
