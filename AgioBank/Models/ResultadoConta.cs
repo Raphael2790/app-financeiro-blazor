@@ -1,6 +1,6 @@
 ﻿namespace AgioBank.Models
 {
-    public class AccountResult
+    public class ResultadoConta
     {
         public string Token { get; set; }
         public bool Success { get; set; }

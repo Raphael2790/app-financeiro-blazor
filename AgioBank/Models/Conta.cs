@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AgioBank.Models
 {
-    public class Account
+    public class Conta
     {
         [Required(ErrorMessage = "Informe o nome")]
         public string Name { get; set; } = string.Empty;

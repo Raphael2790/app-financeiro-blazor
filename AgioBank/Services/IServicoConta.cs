@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace AgioBank.Services
 {
-    public interface IAccountService
+    public interface IServicoConta
     {
-        Task <AccountResult> CreateAccount(Account account);
+        Task <ResultadoConta> CreateAccount(Conta account);
     }
 }
