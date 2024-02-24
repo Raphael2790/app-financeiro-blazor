@@ -1,13 +1,10 @@
-using System;
-using System.Collections.Generic;
+﻿using AgioBank.Contexts.AccountContext.Entities;
+using AgioBank.Pages.Contexts.SharedContext.Enums;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Threading.Tasks;
 
-namespace AgioBank.Models
+namespace AgioBank.Pages.Contexts.AccountContext.UseCases.Create
 {
-    public class Conta
+    public class InputModel
     {
         [Required(ErrorMessage = "Informe o nome")]
         public string Nome { get; set; } = string.Empty;
@@ -15,12 +12,14 @@ namespace AgioBank.Models
         public string Telefone { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "Informe o e-mail")]
+        [EmailAddress(ErrorMessage = "E-mail inválido")]
         public string Email { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "Informe o n�mero do documento")]
+        [Required(ErrorMessage = "Informe o número do documento")]
         public string Documento { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "Informe o nome da sua m�e")]
+        [Required(ErrorMessage = "Informe o nome da sua mãe")]
         public string NomeMae { get; set; } = string.Empty;
+
     }
 }
