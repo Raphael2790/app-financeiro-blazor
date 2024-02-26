@@ -15,17 +15,11 @@
 
 header.masthead {
    
-
       background-size: cover;
     background-repeat: no-repeat;
-    background-color: #1a0b2a !important;
+    background-color: #1a0b2a ;
     height: 100vh;
     font-family: 'Numans', sans-serif;
-
-    
-
-
-
 
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -59,7 +53,13 @@ header.masthead {
 .testimonials {
     padding-top: 5rem;
     padding-bottom: 5rem;
+   
 }
+    .testimonials.MaisProdutos {
+        padding-top: 5rem;
+        padding-bottom: 5rem;
+        background-color: yellow;
+    }
 
 .myform-control {
     display: block;
