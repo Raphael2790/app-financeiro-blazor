@@ -1,7 +1,76 @@
-﻿@page "/login"
+﻿@page "/Login"
 
-<h3>Login</h3>
+@inject NavigationManager NavigationManager;
 
-@code {
+<div class="TopoBody">
 
-}
+    <div class="container">
+        <div class="d-flex justify-content-center h-100">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Login</h3>
+                    <div class="d-flex justify-content-end social_icon">
+                        <span><i class="fab fa-facebook-square"></i></span>
+                        <span><i class="fab fa-google-plus-square"></i></span>
+                        <span><i class="fab fa-twitter-square"></i></span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            </div>
+                            <input type="text"  @bind= "Usuario" class="form-control" placeholder="Usuário" />
+
+                        </div>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                            </div>
+                            <input type="password" @bind="Senha" class=" form-control" placeholder=" Senha" />
+                        </div>
+                        <div class="row align-items-center remember">
+                            <input type="checkbox">Lembrar
+                        </div>
+                        <div class="form-group">
+                            <button class="btn float-right login_btn" disabled="@(!CamposPreenchidos)" @onclick="Logar">Login</button>
+
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex justify-content-center links">
+                        Ainda não é cadastrado?<a href="#">Inscrever-se</a>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <a href="#">Esqueceu sua senha?</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    @code {
+        private string Usuario { get; set; } = string.Empty;
+        private string Senha { get; set; } = string.Empty;
+        private bool CamposPreenchidos => !string.IsNullOrEmpty(Usuario) && !string.IsNullOrEmpty(Senha);//Isso faz com que eu possa verificar se os campos foram preenchidos
+
+
+        public void Logar()
+        {
+            if (CamposPreenchidos)
+            {
+                if (Usuario.Equals("lucas") && Senha.Equals("1234"))
+                {
+                    NavigationManager.NavigateTo("/Criar");
+                }
+                else
+                {
+                NavigationManager.NavigateTo("/Criar");
+                }
+            }
+        }
+
+    }
