@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using AgioBank.Contexts.AccountContext.UseCases.Create;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace AgioBank.Pages.Contexts.AccountContext.UseCases.Create
@@ -26,6 +27,16 @@ namespace AgioBank.Pages.Contexts.AccountContext.UseCases.Create
         [Required(ErrorMessage = "Confirme a senha")]
         [Compare("Senha", ErrorMessage = "Senhas não conferem")]
         public string ConfirmarSenha { get; set; } = string.Empty;
+
+        public static implicit operator Request(InputViewModel viewModel) 
+            => new Request(
+                viewModel.NomeMae,
+                viewModel.Sobrenome,
+                viewModel.Telefone,
+                viewModel.Email,
+                viewModel.Documento,
+                viewModel.NomeMae
+                );
 
 
     }

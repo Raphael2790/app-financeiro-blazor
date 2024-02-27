@@ -2,51 +2,53 @@
 
 @inherits ViewModel
 
-<Busy State="PageState"><h3>Aguarde. Conta sendo criada...</h3></Busy>
-<Success State="PageState"><h3>Conta criada com sucesso!</h3></Success>
-<Error State="PageState"><h3>Falha!</h3></Error>
+<Busy State="@PageState"><h3>Aguarde. Conta sendo criada...</h3></Busy>
+<Success State="@PageState"><h3>Conta criada com sucesso!</h3></Success>
+<Error State="@PageState" Model="@Error"><h3>Falha!</h3></Error>
 
-<EditForm Model="@_model" OnValidSubmit="OnValidSubmitAsync">
-    <DataAnnotationsValidator />
-    <div class="mb-3">
-        <InputText class="form-control" @bind-Value="_model.Nome" placeholder="Nome" />
-        <ValidationMessage For="@(() => _model.Nome)" />
-    </div>
+<Form State="@PageState">
+    <EditForm Model="@Model" OnValidSubmit="@OnValidSubmitAsync">
+        <DataAnnotationsValidator />
+        <div class="mb-3">
+            <InputText class="form-control" @bind-Value="Model.Nome" placeholder="Nome" />
+            <ValidationMessage For="@(() => Model.Nome)" />
+        </div>
 
-    <div class="mb-3">
-        <InputText class="form-control" @bind-Value="_model.Sobrenome" placeholder="Sobrenome" />
-        <ValidationMessage For="@(() => _model.Sobrenome)" />
-    </div>
+        <div class="mb-3">
+            <InputText class="form-control" @bind-Value="Model.Sobrenome" placeholder="Sobrenome" />
+            <ValidationMessage For="@(() => Model.Sobrenome)" />
+        </div>
 
-    <div class="mb-3">
-        <InputText class="form-control" @bind-Value="_model.Telefone" placeholder="Telefone" />
-        <ValidationMessage For =  "@(() => _model.Telefone)" />
-    </div>
+        <div class="mb-3">
+            <InputText class="form-control" @bind-Value="Model.Telefone" placeholder="Telefone" />
+            <ValidationMessage For="@(() => Model.Telefone)" />
+        </div>
 
-    <div class="mb-3">
-        <InputText type="email" class="form-control" @bind-Value="_model.Email" placeholder="E-mail" />
-        <ValidationMessage For="@(() => _model.Email)" />
-    </div>
+        <div class="mb-3">
+            <InputText type="email" class="form-control" @bind-Value="Model.Email" placeholder="E-mail" />
+            <ValidationMessage For="@(() => Model.Email)" />
+        </div>
 
-    <div class="mb-3">
-        <InputText class="form-control" @bind-Value="_model.Documento" placeholder="Documento" />
-        <ValidationMessage For="@(() => _model.Documento)" />
-    </div>
+        <div class="mb-3">
+            <InputText class="form-control" @bind-Value="Model.Documento" placeholder="Documento" />
+            <ValidationMessage For="@(() => Model.Documento)" />
+        </div>
 
-    <div class="mb-3">
-        <InputText class="form-control" @bind-Value="_model.NomeMae" placeholder="Nome da sua mãe" />
-        <ValidationMessage For="@(() => _model.NomeMae)" />
-    </div>
-    
-    <div class="mb-3">
-        <InputText type="password" class="form-control" @bind-Value="_model.Senha" placeholder="Senha" />
-        <ValidationMessage For = "@(() => _model.Senha)" />
-    </div>
+        <div class="mb-3">
+            <InputText class="form-control" @bind-Value="Model.NomeMae" placeholder="Nome da sua mãe" />
+            <ValidationMessage For="@(() => Model.NomeMae)" />
+        </div>
 
-    <div class="mb-3">
-        <InputText type="password"class="form-control" @bind-Value="_model.ConfirmarSenha" placeholder="Confirmar senha" />
-        <ValidationMessage For = "@(() => _model.ConfirmarSenha)" />
-    </div>
+        <div class="mb-3">
+            <InputText type="password" class="form-control" @bind-Value="Model.Senha" placeholder="Senha" />
+            <ValidationMessage For="@(() => Model.Senha)" />
+        </div>
 
-    <button type="submit" class="btn btn-primary">Criar Conta</button>
-</EditForm>
+        <div class="mb-3">
+            <InputText type="password" class="form-control" @bind-Value="Model.ConfirmarSenha" placeholder="Confirmar senha" />
+            <ValidationMessage For="@(() => Model.ConfirmarSenha)" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Criar Conta</button>
+    </EditForm>
+</Form>

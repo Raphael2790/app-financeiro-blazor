@@ -1,0 +1,13 @@
+﻿@if (State is not EState.Busy &&
+    State is not EState.Success)
+{
+    @ChildContent
+}
+
+@code {
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    [Parameter, EditorRequired]
+    public EState State { get; set; }
+}

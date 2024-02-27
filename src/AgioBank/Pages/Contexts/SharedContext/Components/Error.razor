@@ -1,6 +1,19 @@
-﻿@if (State == EState.Error)
+﻿@using AgioBank.Pages.Contexts.SharedContext.ViewModels
+@if (State == EState.Error)
 {
-    <div class="alert alert-info" role="alert">
+    <div class="alert alert-danger" role="alert">
+        <h3>@Model?.MainMessage</h3>
+        @if (Model?.Messages != null)
+        {
+            <ul>
+                @foreach (var message in Model.Messages)
+                {
+                    <li>
+                        @message
+                    </li>
+                }
+            </ul>
+        }
         @ChildContent
     </div>
 }
@@ -11,4 +24,7 @@
 
     [Parameter]
     public EState State { get; set; }
+
+    [Parameter]
+    public ResultViewModel? Model { get; set; }
 }

@@ -1,5 +1,7 @@
 ﻿using AgioBank.Contexts.AccountContext.Entities;
+using AgioBank.Contexts.SharedContext;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 
@@ -7,34 +9,20 @@ namespace AgioBank.Contexts.AccountContext.UseCases.Create.Contracts
 {
     public class Servico : IServico
     {
-        private readonly HttpClient _client;
+        private readonly ICliente _cliente;
 
-        public Servico(HttpClient client) => _client = client;
+        public Servico(ICliente cliente) 
+        {
+            _cliente = cliente;
+        } 
 
         public async Task<Response> CriarConta(Conta conta, CancellationToken cancellationToken)
         {
-            try
-            {
-                var endpoint = "api/v1/accounts";
+            var endpoint = "api/v1/accounts";
 
-                var content = new StringContent(JsonSerializer.Serialize(conta), Encoding.UTF8, "application/json");
-
-                var httpResponse = await _client.PostAsync(endpoint, content, cancellationToken);
-
-                httpResponse.EnsureSuccessStatusCode();
-                var responseContent = await httpResponse.Content.ReadAsStringAsync();
-                var responseData = JsonSerializer.Deserialize<ResponseData>(responseContent);
-
-                return new Response("Conta criada com sucesso", responseData!);
-            }
-            catch (HttpRequestException ex)
-            {
-                return new Response($"Erro de solicitação HTTP: {ex.Message}", (HttpStatusCode)ex.StatusCode!);
-            }
-            catch
-            {
-                return new Response("Erro desconhecido ao criar conta", HttpStatusCode.InternalServerError);
-            }
+            var content = new StringContent(JsonSerializer.Serialize(conta), Encoding.UTF8, "application/json");
+            var response = (Response)await _cliente.PostAsync(endpoint, content, cancellationToken);
+            return response;
         }
     }
 }
