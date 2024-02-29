@@ -1,4 +1,4 @@
-﻿@page "/account/create"
+﻿@page "/conta/criar"
 
 @inherits ViewModel
 
@@ -47,6 +47,10 @@
         <div class="mb-3">
             <InputText type="password" class="form-control" @bind-Value="Model.ConfirmarSenha" placeholder="Confirmar senha" />
             <ValidationMessage For="@(() => Model.ConfirmarSenha)" />
+        </div>
+
+        <div class="mb-3">
+            <InputFile class="form-control" @bind-Value="Model.Arquivo" OnChange="HandleFileChange" />
         </div>
 
         <button type="submit" class="btn btn-primary">Criar Conta</button>

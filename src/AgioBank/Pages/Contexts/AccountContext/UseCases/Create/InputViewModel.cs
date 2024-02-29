@@ -1,4 +1,6 @@
 ﻿using AgioBank.Contexts.AccountContext.UseCases.Create;
+using Microsoft.AspNetCore.Components.Forms;
+using Microsoft.AspNetCore.Http;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
@@ -28,15 +30,34 @@ namespace AgioBank.Pages.Contexts.AccountContext.UseCases.Create
         [Compare("Senha", ErrorMessage = "Senhas não conferem")]
         public string ConfirmarSenha { get; set; } = string.Empty;
 
-        public static implicit operator Request(InputViewModel viewModel) 
-            => new Request(
-                viewModel.NomeMae,
-                viewModel.Sobrenome,
-                viewModel.Telefone,
-                viewModel.Email,
-                viewModel.Documento,
-                viewModel.NomeMae
-                );
+        public IBrowserFile? Arquivo { get; set; }
+
+        public static implicit operator Request(InputViewModel viewModel)
+        {
+            try
+            {
+                string nomeArquivo = viewModel.Arquivo != null ? viewModel.Arquivo.Name : string.Empty;
+                StreamContent arquivo = new StreamContent(viewModel.Arquivo!.OpenReadStream());
+
+                var request = new Request(
+                    viewModel.NomeMae,
+                    viewModel.Sobrenome,
+                    viewModel.Telefone,
+                    viewModel.Email,
+                    viewModel.Documento,
+                    viewModel.NomeMae,
+                    viewModel.Senha,
+                    nomeArquivo,
+                    arquivo
+                    );
+                return request;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
 
     }

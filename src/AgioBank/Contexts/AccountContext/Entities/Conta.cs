@@ -10,23 +10,25 @@ namespace AgioBank.Contexts.AccountContext.Entities
 {
     public class Conta:Entidade
     {
-        [Required(ErrorMessage = "Informe o nome")]
         public string Nome { get; set; } = string.Empty;
         public string Sobrenome { get; set; } = string.Empty;
         public string Telefone { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "Informe o e-mail")]
         public string Email { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "Informe o número do documento")]
         public string Documento { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "Informe o nome da sua mãe")]
         public string NomeMae { get; set; } = string.Empty;
+
+        public string Senha { get; set; } = string.Empty;
+
+        public string NomeArquivo { get; set; } = string.Empty;
+
+        public StreamContent? Arquivo { get; set; }
 
         public Conta ()
         { }
-        public Conta(string nome, string sobrenome, string telefone, string email, string documento, string nomeMae)
+        public Conta(string nome, string sobrenome, string telefone, string email, string documento, string nomeMae, string senha, string nomeArquivo, StreamContent arquivo)
         {
             Nome = nome;
             Sobrenome = sobrenome;
@@ -34,6 +36,9 @@ namespace AgioBank.Contexts.AccountContext.Entities
             Email = email;
             Documento = documento;
             NomeMae = nomeMae;
+            Senha = senha;
+            NomeArquivo = nomeArquivo;
+            Arquivo = arquivo;
         }
     }
 }

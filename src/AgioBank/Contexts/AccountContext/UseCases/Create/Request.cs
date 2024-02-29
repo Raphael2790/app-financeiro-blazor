@@ -11,6 +11,9 @@ namespace AgioBank.Contexts.AccountContext.UseCases.Create
         string Telefone,
         string Email,
         string Documento,
-        string NomeMae
+        string NomeMae,
+        string Senha,
+        string NomeArquivo,
+        StreamContent? Arquivo        
     ) : IRequest<Response>;
 }

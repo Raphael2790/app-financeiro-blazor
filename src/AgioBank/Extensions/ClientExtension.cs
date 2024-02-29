@@ -6,7 +6,13 @@ namespace AgioBank.Extensions
     {
         public static void AddClientExtension(this WebAssemblyHostBuilder builder)
         {
-            builder.Services.AddHttpClient("api", c => c.BaseAddress = new Uri($"{builder.HostEnvironment.BaseAddress}api"));
+            builder.Services.AddHttpClient("api", c
+            => 
+            {
+                c.DefaultRequestHeaders.Add("Authoriztion", "token");
+                c.DefaultRequestHeaders.Add("User-Agent", "user-agent");
+                c.BaseAddress = new Uri("https://localhost:5000/api");
+            });
         }
     }
 }

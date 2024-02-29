@@ -3,6 +3,8 @@ using AgioBank.Contexts.AccountContext.UseCases.Create;
 using AgioBank.Pages.Contexts.SharedContext.Enums;
 using AgioBank.Pages.Contexts.SharedContext.ViewModels;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Forms;
+using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
 using UseCase = AgioBank.Contexts.AccountContext.UseCases.Create;
 
@@ -20,6 +22,10 @@ namespace AgioBank.Pages.Contexts.AccountContext.UseCases.Create
         }
         protected async Task OnValidSubmitAsync()
             =>  await base.OnValidSubmitAsync(Model, Handler);
-        
+
+        public void HandleFileChange(InputFileChangeEventArgs e)
+        {
+            Model.Arquivo = e.File;
+        }
     }
 }
