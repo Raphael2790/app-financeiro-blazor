@@ -4,41 +4,41 @@ Este projeto é uma aplicação de um banco virtual desenvolvida usando Blazor W
 
 ## Estrutura de Pastas
 
-- **Contexts
-	- **AccountContext
-		- **Entities
-			- **Conta.cs
-		- **UseCases
-			- **Create
-				- **Contracts
-					- **IServico.cs
-					- **Servico.cs
-					- **ICliente.cs
-					- **Cliente.cs
-				- **Handler.cs
-				- **Request.cs
-				- **Response.cs
-				- **Validacao.cs
-			- **Authenticate
-				- **Contracts
-					- **IServico.cs
-					- **Servico.cs
-					ICliente.cs
-					Cliente.cs
-				Handler.cs
-				Request.cs
-				Response.cs
-				Validacao.cs
-	SharedContext
-		Entities
-			Entidade.cs
-Pages
-	Contexts
-		AccountContext
-			UseCases
-				Create
-					Criar.razor
-					Criar.razor.cs
+- Contexts
+	- AccountContext
+		- Entities
+			- Conta.cs
+		- UseCases
+			- Create
+				- Contracts
+					- IServico.cs
+					- Servico.cs
+					- ICliente.cs
+					- Cliente.cs
+				- Handler.cs
+				- Request.cs
+				- Response.cs
+				- Validacao.cs
+			- Authenticate
+				- Contracts
+					- IServico.cs
+					- Servico.cs
+					- ICliente.cs
+					- Cliente.cs
+				- Handler.cs
+				- Request.cs
+				- Response.cs
+				- Validacao.cs
+	- SharedContext
+		- Entities
+			- Entidade.cs
+- Pages
+	- Contexts
+		- AccountContext
+			- UseCases
+				- Create
+					- Criar.razor
+					- Criar.razor.cs
 
 
 ## Descrição das Classes
