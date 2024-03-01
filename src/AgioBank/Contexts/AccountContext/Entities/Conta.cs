@@ -10,21 +10,21 @@ namespace AgioBank.Contexts.AccountContext.Entities
 {
     public class Conta:Entidade
     {
-        public string Nome { get; set; } = string.Empty;
-        public string Sobrenome { get; set; } = string.Empty;
-        public string Telefone { get; set; } = string.Empty;
+        public string Nome { get; private set; } = string.Empty;
+        public string Sobrenome { get; private set; } = string.Empty;
+        public string Telefone { get; private set; } = string.Empty;
 
-        public string Email { get; set; } = string.Empty;
+        public string Email { get; private set; } = string.Empty;
 
-        public string Documento { get; set; } = string.Empty;
+        public string Documento { get; private set; } = string.Empty;
 
-        public string NomeMae { get; set; } = string.Empty;
+        public string NomeMae { get; private set; } = string.Empty;
 
-        public string Senha { get; set; } = string.Empty;
+        public string Senha { get; private set; } = string.Empty;
 
-        public string NomeArquivo { get; set; } = string.Empty;
+        public string NomeArquivo { get; private set; } = string.Empty;
 
-        public StreamContent? Arquivo { get; set; }
+        public StreamContent? Arquivo { get; private set; }
 
         public Conta ()
         { }

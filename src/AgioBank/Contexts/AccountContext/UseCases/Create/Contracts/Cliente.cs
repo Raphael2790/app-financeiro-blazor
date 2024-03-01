@@ -6,15 +6,15 @@ using Create = AgioBank.Contexts.AccountContext.UseCases.Create;
 
 namespace AgioBank.Contexts.AccountContext.UseCases.Create.Contracts
 {
-    public class Cliente : ClienteApi
+    public class Cliente : ICliente
     {
-        public Cliente(HttpClient cliente) : base(cliente)
-        {
-        }
+        private readonly HttpClient _clienteHttp;
+
+        public Cliente(HttpClient clienteHttp) => _clienteHttp = clienteHttp;
 
         public async Task<Response> CriarConta(Conta conta, CancellationToken cancellationToken)
         {
-            var endpoint = "api/v1/accounts";
+            var endPoint = "api/v1/accounts";
 
             var jsonConta = JsonSerializer.Serialize(new
             {
@@ -38,7 +38,8 @@ namespace AgioBank.Contexts.AccountContext.UseCases.Create.Contracts
                 {
                     content.Add(conta.Arquivo!, "arquivo", conta.NomeArquivo);
 
-                    var httpResponse = await base.PostAsync(endpoint, content, cancellationToken);
+                    var httpResponse = await _clienteHttp.PostAsync(endPoint, content, cancellationToken);
+                    httpResponse.EnsureSuccessStatusCode();
 
                     var responseContent = await httpResponse.Content.ReadAsStreamAsync();
                     var responseData = await JsonSerializer.DeserializeAsync<ResponseData>(responseContent);
@@ -49,7 +50,7 @@ namespace AgioBank.Contexts.AccountContext.UseCases.Create.Contracts
             }
             catch (HttpRequestException ex)
             {
-                return new Create.Response($"Erro ao criar conta: {ex.Message}", (HttpStatusCode)ex.StatusCode!);
+                return new Create.Response($"Erro ao criar conta: {ex.Message}", ex.StatusCode == null? HttpStatusCode.BadRequest : (HttpStatusCode)ex.StatusCode!);
             }
             catch (Exception ex)
             {

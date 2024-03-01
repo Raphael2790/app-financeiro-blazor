@@ -11,7 +11,7 @@ namespace AgioBank.Extensions
             builder.Services.AddTransient<AgioBank.Contexts.AccountContext.UseCases.Create.Contracts.IServico, AgioBank.Contexts.AccountContext.UseCases.Create.Contracts.Servico>();
             builder.Services.AddTransient<AgioBank.Contexts.AccountContext.UseCases.Authenticate.Contracts.IServico, AgioBank.Contexts.AccountContext.UseCases.Authenticate.Contracts.ServicoMock>();
             builder.Services.AddTransient<AgioBank.Contexts.AccountContext.UseCases.Create.Handler>();
-            builder.Services.AddHttpClient<AgioBank.Contexts.AccountContext.UseCases.Create.Contracts.Cliente>((httpClient) =>
+            builder.Services.AddHttpClient<AgioBank.Contexts.AccountContext.UseCases.Create.Contracts.ICliente, AgioBank.Contexts.AccountContext.UseCases.Create.Contracts.Cliente >((httpClient) =>
             {
                 httpClient.BaseAddress = new Uri("https://localhost:5000");
             });

@@ -1,5 +1,6 @@
 ﻿using AgioBank.Contexts.AccountContext.Entities;
 using AgioBank.Contexts.AccountContext.UseCases.Create.Contracts;
+using FluentValidation.Results;
 using MediatR;
 using System.IO;
 using System.Net;
@@ -20,8 +21,14 @@ namespace AgioBank.Contexts.AccountContext.UseCases.Create
             Conta conta;
             conta = new Conta(request.Nome, request.Sobrenome, request.Telefone, request.Email, request.Documento, request.NomeMae, request.Senha, request.NomeArquivo, request.Arquivo);
 
-            try
-            {
+            Validacao validacao = new Validacao();
+
+            ValidationResult results = await validacao.ValidateAsync(conta);
+            if (!results.IsValid)
+                return new Response($"Não foi possível validar a conta: {results.ToString()}", HttpStatusCode.BadRequest);
+
+            try 
+            { 
                 var response = await _servico.CriarConta(conta, cancellationToken);
                 return response;
             }

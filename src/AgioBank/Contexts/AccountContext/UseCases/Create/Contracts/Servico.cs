@@ -10,9 +10,9 @@ namespace AgioBank.Contexts.AccountContext.UseCases.Create.Contracts
 {
     public class Servico : IServico
     {
-        private readonly Cliente _cliente;
+        private readonly ICliente _cliente;
 
-        public Servico(Cliente cliente) 
+        public Servico(ICliente cliente) 
         {
             _cliente = cliente;
         } 
