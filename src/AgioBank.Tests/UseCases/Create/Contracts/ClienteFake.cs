@@ -13,7 +13,9 @@ namespace AgioBank.Tests.UseCases.Create.Contracts
     {
         public async Task<Response> CriarConta(Conta conta, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            await Task.Delay(100);
+            var response = new Response("Conta criada com sucesso", new ResponseData(Guid.NewGuid().ToString()));
+            return response;
         }
     }
 }

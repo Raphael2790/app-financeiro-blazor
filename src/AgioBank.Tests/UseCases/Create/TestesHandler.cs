@@ -42,5 +42,25 @@ namespace AgioBank.Tests.UseCases.Create
 
             Assert.AreEqual(response.Status, System.Net.HttpStatusCode.BadRequest);
         }
+
+        [TestMethod]
+        public async Task Dada_uma_conta_valida_a_resposta_deve_conter_o_id_da_conta()
+        {
+            var emailInvalido = "eduardo.boca@gmail.com";
+            _request = new(
+                    "João",
+                    "Silva",
+                    "81999999999",
+                    emailInvalido,
+                    "123456",
+                    "Maria",
+                    "123456",
+                    "arquivo.pdf",
+                    null);
+            var response = await _handler.Handle(_request, new CancellationToken());
+
+            Assert.IsNotNull(response.Data!.Id);
+        }
+
     }
 }
