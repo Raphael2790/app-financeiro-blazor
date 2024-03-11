@@ -1,18 +1,22 @@
 ﻿using AgioBank.Contexts.AccountContext.Entities;
-using AgioBank.Contexts.SharedContext;
 using System.Net;
 using System.Text.Json;
 using Create = AgioBank.Contexts.AccountContext.UseCases.Create;
+using Authenticate = AgioBank.Contexts.AccountContext.UseCases.Authenticate;
+using System.Text;
+using System.Net.Http;
 
 namespace AgioBank.Contexts.AccountContext.UseCases.Create.Contracts
 {
     public class Cliente : ICliente
     {
         private readonly HttpClient _clienteHttp;
+        public Cliente(IHttpClientFactory clienteHttp)
+        {
+            _clienteHttp = clienteHttp.CreateClient("api");
+        }
 
-        public Cliente(HttpClient clienteHttp) => _clienteHttp = clienteHttp;
-
-        public async Task<Response> CriarConta(Conta conta, CancellationToken cancellationToken)
+        public async Task<AccountContext.UseCases.Create.Response> CriarConta(Conta conta, CancellationToken cancellationToken)
         {
             var endPoint = "api/v1/accounts";
 
@@ -42,7 +46,7 @@ namespace AgioBank.Contexts.AccountContext.UseCases.Create.Contracts
                     httpResponse.EnsureSuccessStatusCode();
 
                     var responseContent = await httpResponse.Content.ReadAsStreamAsync();
-                    var responseData = await JsonSerializer.DeserializeAsync<ResponseData>(responseContent);
+                    var responseData = await JsonSerializer.DeserializeAsync<AccountContext.UseCases.Create.ResponseData>(responseContent);
 
                     return new Create.Response("Conta criada com sucesso", responseData!);
                 }
@@ -50,12 +54,13 @@ namespace AgioBank.Contexts.AccountContext.UseCases.Create.Contracts
             }
             catch (HttpRequestException ex)
             {
-                return new Create.Response($"Erro ao criar conta: {ex.Message}", ex.StatusCode == null? HttpStatusCode.BadRequest : (HttpStatusCode)ex.StatusCode!);
+                return new Create.Response($"Erro ao criar conta: {ex.Message}", ex.StatusCode == null ? HttpStatusCode.BadRequest : (HttpStatusCode)ex.StatusCode!);
             }
             catch (Exception ex)
             {
                 return new Create.Response($"Erro desconhecido: {ex.Message}", HttpStatusCode.InternalServerError);
             }
         }
+
     }
 }

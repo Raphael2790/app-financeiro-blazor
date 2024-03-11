@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+﻿using AgioBank.Contexts.SharedContext;
+using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using Microsoft.Extensions.Configuration;
 
 namespace AgioBank.Extensions
 {
@@ -6,12 +8,14 @@ namespace AgioBank.Extensions
     {
         public static void AddClientExtension(this WebAssemblyHostBuilder builder)
         {
-            builder.Services.AddHttpClient("api", c
-            => 
+            string? apiKey = builder.Configuration.GetValue<string>("ConfigApi:ApiKey");
+            string? url = builder.Configuration.GetValue<string>("ConfigApi:ApiUrl");
+
+            builder.Services.AddHttpClient ("api", cliente =>         
             {
-                c.DefaultRequestHeaders.Add("Authoriztion", "token");
-                c.DefaultRequestHeaders.Add("User-Agent", "user-agent");
-                c.BaseAddress = new Uri("https://localhost:5000/api");
+                cliente.BaseAddress = new Uri(url!);
+                cliente.DefaultRequestHeaders.Add("User-Agent", "user-agent");
+                cliente.DefaultRequestHeaders.Add("x-apikey", apiKey);
             });
         }
     }

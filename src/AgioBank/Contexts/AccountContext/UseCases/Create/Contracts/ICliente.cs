@@ -4,7 +4,6 @@ namespace AgioBank.Contexts.AccountContext.UseCases.Create.Contracts
 {
     public interface ICliente
     {
-        public Task<Response> CriarConta(Conta conta, CancellationToken cancellationToken);
-
+        public Task<AgioBank.Contexts.AccountContext.UseCases.Create.Response> CriarConta(Conta conta, CancellationToken cancellationToken);
     }
 }

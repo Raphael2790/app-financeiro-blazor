@@ -1,0 +1,24 @@
+﻿@page "/autenticar"
+
+@inherits ViewModel
+
+<Busy State="@PageState"><h3>Aguarde...</h3></Busy>
+<Success State="@PageState"><h3>Login efetuado com sucesso!</h3></Success>
+<Error State="@PageState" Model="@Error" />
+
+<Form State="@PageState">
+    <EditForm Model="@Model" OnValidSubmit="@OnValidSubmitAsync">
+        <DataAnnotationsValidator />
+        <div class = "mb-3">
+            <InputText type="email" class="form-control" @bind-Value="Model.Email" placeholder="E-mail" />
+            <ValidationMessage For = "@(() => Model.Email )" />
+        </div>
+        
+        <div class="mb-3">
+            <InputText type="password" class="form-control" @bind-Value="Model.Senha" placeholder="Senha" />
+            <ValidationMessage For = "@(() => Model.Senha)" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Entrar</button>
+    </EditForm>
+</Form>

@@ -5,7 +5,7 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AgioBank", "AgioBank.csproj", "{BC044D87-CBC1-46E5-98FA-74AA31F0C387}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgioBank.Tests", "..\AgioBank.Tests\AgioBank.Tests.csproj", "{479EBEBE-2A18-47A7-B08C-B85055C83135}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AgioBank.Tests", "..\AgioBank.Tests\AgioBank.Tests.csproj", "{479EBEBE-2A18-47A7-B08C-B85055C83135}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,7 +1,5 @@
 ﻿using AgioBank.Contexts.AccountContext.UseCases.Create;
 using Microsoft.AspNetCore.Components.Forms;
-using Microsoft.AspNetCore.Http;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace AgioBank.Pages.Contexts.AccountContext.UseCases.Create
